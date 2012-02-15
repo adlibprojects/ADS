@@ -374,7 +374,7 @@ function hmbkp_path_move( $from, $to ) {
 	if ( is_writable( dirname( $to ) ) && ! is_dir( $to ) )
 	    mkdir( $to, 0755 );
 
-	if ( !is_dir( $to ) || !is_writable( $to ) || !is_dir( $from ) )
+	if ( ! is_dir( $to ) || ! is_writable( $to ) || ! is_dir( $from ) )
 	    return false;
 
 	hmbkp_cleanup();
@@ -507,9 +507,11 @@ function hmbkp_possible() {
  */
 function hmbkp_cleanup() {
 
+	delete_option( 'hmbkp_email_error' );
+
 	$hmbkp_path = hmbkp_path();
 
-	if ( !is_dir( $hmbkp_path ) )
+	if ( ! is_dir( $hmbkp_path ) )
 		return;
 
 	if ( $handle = opendir( $hmbkp_path ) ) :

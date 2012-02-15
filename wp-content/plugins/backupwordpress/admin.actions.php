@@ -206,7 +206,7 @@ add_action( 'admin_init', 'hmbkp_dismiss_error' );
  */
 function hmbkp_ajax_is_backup_in_progress() {
 
-	if ( ! hmbkp_is_in_progress() )
+	if ( ! hmbkp_in_progress() )
 		echo 0;
 
 	else
@@ -281,7 +281,7 @@ function hmbkp_constant_changes() {
 		hmbkp_path_move( $from, HMBKP_PATH );
 
 	// If a custom backup path has been removed
-	if ( ( ( defined( 'HMBKP_PATH' ) && ! HMBKP_PATH ) || !defined( 'HMBKP_PATH' ) && hmbkp_conform_dir( hmbkp_path_default() ) != ( $from = hmbkp_conform_dir( get_option( 'hmbkp_path' ) ) ) ) )
+	if ( ( ( defined( 'HMBKP_PATH' ) && ! HMBKP_PATH ) || ! defined( 'HMBKP_PATH' ) && hmbkp_conform_dir( hmbkp_path_default() ) != ( $from = hmbkp_conform_dir( get_option( 'hmbkp_path' ) ) ) ) )
 		hmbkp_path_move( $from, hmbkp_path_default() );
 
 	// If the custom path has changed and the new directory isn't writable
